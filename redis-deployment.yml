@@ -4,21 +4,19 @@ kind: Deployment
 metadata:
   name: redis-deployment
   labels:
-    name: redis-deployment
+    name: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: redis-deployment
+      name: redis
   template:
     metadata:
       name: redis-pod
       labels:
-        name: redis-deployment
+        name: redis
     spec:
       containers:
         - name: redis
           image: redis
-          ports:
-            - containerPort: 6379
 ...

@@ -4,36 +4,26 @@ kind: Deployment
 metadata:
   name: postgres-deployment
   labels:
-    name: postgres-deployment
+    name: postgres
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: postgres-deployment
+      name: postgres
   template:
     metadata:
       name: postgres-pod
       labels:
-        name: postgres-deployment
+        name: postgres
     spec:
       containers:
         - name: postgres
           image: postgres
-          ports:
-            - containerPort: 5432
           env:
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secrets
-                  key: password
+              value: krishna
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secrets
-                  key: user
+              value: myuser
             - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secrets
-                  key: db
+              value: mydb
+...
